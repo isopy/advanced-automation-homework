@@ -43,4 +43,11 @@
 
   roles:
     - tomcat
-    - apache
+
+- name: smoketest app
+  hosts: frontends
+  gather_facts: false
+  become: true
+
+  roles:
+    - smoketest
