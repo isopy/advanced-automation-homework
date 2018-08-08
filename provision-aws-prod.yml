@@ -1,0 +1,41 @@
+---
+- hosts: bastion.6678.example.opentlc.com
+  become: true
+
+  vars:
+    scripts_dir: http://www.opentlc.com/download/ansible_bootcamp/scripts
+    root_home: /root
+
+  tasks:
+    - name: create ~/bin dir
+      file:
+        path: "{{ root_home}}/bin"
+        state: directory
+
+    - name: get scripts
+      get_url:
+        url: "{{ scripts_dir }}/{{ item.name }}"
+        dest: "{{ item.dest }}"
+      loop:
+        - { name: 'order_svc.sh', dest: '{{ root_home }}' }
+        - { name: 'jq-linux64', dest: '{{ root_home }}/bin/jq' }
+
+    - name: make scripts executable
+      file:
+        path: "{{ item }}"
+        state: file
+        mode: 0755
+      loop:
+        - "{{ root_home }}/bin/jq"
+        - "{{ root_home }}/order_svc.sh"
+
+    - name: run the script to provision aws
+      shell: ./order_svc.sh -c "OPENTLC Automation" -i "Three Tier Application" -t 1 -y
+      args:
+        executable: /bin/bash
+        chdir: "{{ root_home }}"
+      environment:
+        PATH: "/root/bin/:{{ ansible_env.PATH }}"
+        username: "{{ opentlc_vaulted_username }}"
+        password: "{{ opentlc_vaulted_password }}"
+        uri: "{{ opentlc_vaulted_uri }}"
