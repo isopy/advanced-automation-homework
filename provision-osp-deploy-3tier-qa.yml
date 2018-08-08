@@ -1,4 +1,17 @@
 ---
+- name: set up osp environment for {{ cloud_name }}
+  hosts: jumpbox
+  vars:
+    cloud_name: ospcloud
+    osp_instance_state: present
+
+  roles:
+    - osp-network
+    - osp-keys
+    - osp-flavor
+    - osp-security-groups
+    - osp-provision
+
 - name: configure all instances with common items
   hosts: frontends,appdbs,apps
   gather_facts: false
