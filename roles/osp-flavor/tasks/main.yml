@@ -1,0 +1,9 @@
+---
+- name: create custom flavor
+  os_nova_flavor:
+    cloud: "{{ cloud_name }}"
+    state: present
+    name: m2.small
+    ram: 2048
+    vcpus: 1
+    disk: 10

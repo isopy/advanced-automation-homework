@@ -1,0 +1,10 @@
+---
+  # this playbook/role should delete all OSP infra instead
+- name: clean up osp environment for {{ cloud_name }}
+  hosts: jumpbox
+  vars:
+    cloud_name: ospcloud
+    osp_instance_state: absent
+
+  roles:
+    - osp-provision

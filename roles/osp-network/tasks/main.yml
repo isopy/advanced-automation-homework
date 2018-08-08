@@ -1,0 +1,53 @@
+---
+- name: create internal and external networks
+  os_network:
+    cloud: "{{ cloud_name }}"
+    state: present
+    name: "{{ item.name }}"
+    external: "{{ item.external }}"
+  loop:
+    - { name: 'int_network', external: 'false' }
+    - { name: 'ext_network', external: 'true' }
+
+- name: create public subnet
+  os_subnet:
+    cloud: "{{ cloud_name }}"
+    name: publicnetwork1
+    network_name: ext_network
+    cidr: 10.10.10.0/24
+    host_routes:
+      - destination: 0.0.0.0/0
+        nexthop: 10.10.10.0
+      - destination: 192.168.0.0/24
+        nexthop: 192.168.0.0
+    dns_nameservers:
+      - 8.8.8.7
+      - 8.8.8.8
+    state: present
+
+- name: create private subnet
+  os_subnet:
+    cloud: "{{ cloud_name }}"
+    name: privatenetwork1
+    network_name: int_network
+    cidr: 20.20.20.0/24
+    host_routes:
+      - destination: 0.0.0.0/0
+        nexthop: 20.20.20.0
+      - destination: 192.168.0.0/24
+        nexthop: 192.168.0.0
+    dns_nameservers:
+      - 8.8.8.7
+      - 8.8.8.8
+    state: present
+
+- name: create os router
+  os_router:
+    cloud: "{{ cloud_name }}"
+    state: present
+    name: router1
+    network: ext_network
+    external_fixed_ips:
+      - subnet: publicnetwork1
+    interfaces:
+      - privatenetwork1

@@ -1,0 +1,6 @@
+---
+- name: configure open_three-tier-app yum repo
+  copy:
+    src: open_three_tier_app.repo
+    dest: /etc/yum.repos.d/open_three-tier-app.repo
+    mode: 0644

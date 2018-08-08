@@ -1,0 +1,30 @@
+---
+app_stack:
+  app1:
+    group: apps
+    deployment_name: QA
+    security_group_name: app_servers
+    key_name: ansible_ssh
+    flavor: m2.small
+    image: rhel-guest
+  app2:
+    group: apps
+    deployment_name: QA
+    security_group_name: app_servers
+    key_name: ansible_ssh
+    flavor: m2.small
+    image: rhel-guest
+  db:
+    group: appdbs
+    deployment_name: QA
+    security_group_name: db_servers
+    key_name: ansible_ssh
+    flavor: m2.small
+    image: rhel-guest
+  frontend:
+    group: frontends
+    deployment_name: QA
+    security_group_name: frontend_servers
+    key_name: ansible_ssh
+    flavor: m2.small
+    image: rhel-guest

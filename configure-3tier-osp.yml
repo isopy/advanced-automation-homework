@@ -1,0 +1,33 @@
+---
+- name: configure all instances with common items
+  hosts: frontends,appdbs,apps
+  gather_facts: false
+  become: true
+
+  roles:
+    - common
+
+- name: configure frontend instances
+  hosts: frontends
+  gather_facts: false
+  become: true
+
+  roles:
+    - haproxy
+
+- name: configure appdb instances
+  hosts: appdbs
+  gather_facts: false
+  become: true
+
+  roles:
+    - postgres
+
+- name: configure app instances
+  hosts: apps
+  gather_facts: false
+  become: true
+
+  roles:
+    - tomcat
+    - apache
