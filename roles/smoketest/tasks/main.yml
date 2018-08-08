@@ -5,12 +5,6 @@
     return_content: yes
   register: webpage
 
-- name: debug webpage content
-  debug:
-    var: webpage
-
-- pause:
-
 - name: Fail if expected content not found on webpage
   fail:
   when: "'Ansible Deployed Tomcat' not in webpage.content"
