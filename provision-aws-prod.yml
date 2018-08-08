@@ -18,6 +18,7 @@
         dest: "{{ item.dest }}"
       loop:
         - { name: 'order_svc.sh', dest: '{{ root_home }}' }
+        - { name: 'common.sh', dest: '{{ root_home }}' }
         - { name: 'jq-linux64', dest: '{{ root_home }}/bin/jq' }
 
     - name: make scripts executable
