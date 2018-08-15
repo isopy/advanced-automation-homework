@@ -19,18 +19,18 @@ The playbooks and roles in this repository will:
 
 ##  In Tower
 #### CI / CD Pipeline Workflow Job Template
-To run complete CI/CD pipeline workflow, run the `CI / CD Pipeline` Workflow Template
+- To run complete CI/CD pipeline workflow, run the `CI / CD Pipeline` Workflow Template
 
 #### Provision QA Openstack Environment (including smoke test)
-To provision the QA Openstack environment and deploy the 3 tier app, execute the `Provision QA Environment and Deploy 3 Tier App - Openstack` Job Template
+- To provision the QA Openstack environment and deploy the 3 tier app, execute the `Provision QA Environment and Deploy 3 Tier App - Openstack` Job Template
 
 #### Cleanup QA Openstack Environment (including smoke test)
-To cleanup the QA Openstack 3 Tier App instances, execute the `Cleanup QA Instances - Openstack` Job Template
+- To cleanup the QA Openstack 3 Tier App instances, execute the `Cleanup QA Instances - Openstack` Job Template
 
 #### Provision AWS Production Environment
-To provision the AWS Production environment, execute the `Provision Prod Environment - AWS` Job Template
+- To provision the AWS Production environment, execute the `Provision Prod Environment - AWS` Job Template
 
 #### Deploy 3 Tier app to AWS Production Environment (including smoke test)
-To deploy the 3 Tier app to the AWS Production environment, execute the `Deploy 3 Tier App Prod Environment - AWS` Job Template
+- To deploy the 3 Tier app to the AWS Production environment, execute the `Deploy 3 Tier App Prod Environment - AWS` Job Template
 
 
