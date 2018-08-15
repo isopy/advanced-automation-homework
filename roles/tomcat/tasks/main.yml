@@ -27,4 +27,4 @@
 
 - name: wait a few seconds for tomcat to come up
   pause:
-    seconds: 3
+    seconds: 15
