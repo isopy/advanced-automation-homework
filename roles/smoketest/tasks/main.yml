@@ -7,4 +7,5 @@
 
 - name: Fail if expected content not found on webpage
   fail:
+    msg: "The smoketest failed | cleaning up instances"
   when: "'Ansible Deployed Tomcat' not in webpage.content"
